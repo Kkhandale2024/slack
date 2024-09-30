@@ -1,82 +1,82 @@
-name: Slack Notify
+# name: Slack Notify
 
-on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+# on:
+#   push:
+#     branches:
+#       - main
+#   workflow_dispatch:
 
-jobs:
-  run-safe-scrub:
-    name: Run SafeScrub Daily
-    runs-on: ubuntu-latest
-    permissions:
-      contents: 'read'
-      id-token: 'write'
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v3
+# jobs:
+#   run-safe-scrub:
+#     name: Run SafeScrub Daily
+#     runs-on: ubuntu-latest
+#     permissions:
+#       contents: 'read'
+#       id-token: 'write'
+#     steps:
+#       - name: Check out code
+#         uses: actions/checkout@v3
      
-      - name: Create a test file
-        run: echo "This is a test file" > test-file.txt
+#       - name: Create a test file
+#         run: echo "This is a test file" > test-file.txt
  
-      - name: Upload file as artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: test-file.txt
-          path: test-file.txt
+#       - name: Upload file as artifact
+#         uses: actions/upload-artifact@v3
+#         with:
+#           name: test-file.txt
+#           path: test-file.txt
 
-  download-file:
-    needs: run-safe-scrub  
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v3
+#   download-file:
+#     needs: run-safe-scrub  
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Check out code
+#         uses: actions/checkout@v3
 
-      - name: Download artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: test-file.txt
+#       - name: Download artifact
+#         uses: actions/download-artifact@v3
+#         with:
+#           name: test-file.txt
 
-      - name: Display file content
-        run: cat test-file.txt
+#       - name: Display file content
+#         run: cat test-file.txt
 
-      - name: Extract File URL
-        id: extract_url
-        run: |
-          FILE_URL="https://github.com/${{ github.repository }}/raw/${{ github.ref_name }}/test-file.txt"
-          echo "FILE_URL=${FILE_URL}" >> $GITHUB_ENV
+#       - name: Extract File URL
+#         id: extract_url
+#         run: |
+#           FILE_URL="https://github.com/${{ github.repository }}/raw/${{ github.ref_name }}/test-file.txt"
+#           echo "FILE_URL=${FILE_URL}" >> $GITHUB_ENV
 
 
 
-      - name: Send Slack Notification
-        uses: Kkhandale2024/slack@v.1
-        with:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-          SLACK_USERNAME: test-16
-          SLACK_CHANNEL: test-up
-          SLACK_COLOR: "#967BB6" 
-          SLACK_ICON_URL: https://clouddrove.com/assets/images/logo.png
-          MESSAGE: ':white_check_mark: Here is your generated :rocket:'
-          REPO_ACTION_URL: "${{ github.server_url }}/${{ github.repository }}/actions"
-          DEPLOYMENT_URL: 'https://your-organization.com'
-          FOOTER: 'CloudDrove' 
-          FOOTER_ICON: "https://avatars.githubusercontent.com/u/45422299?s=200&v=4" 
-          ORG_URL: 'https://your-organization.com'
-          FILE_URL: ${{ env.FILE_URL }}
-          SLACK_ICON_EMOJI: ':rocket:'
-          CUSTOM_FIELD_1_TITLE: "Environment"
-          CUSTOM_FIELD_1_VALUE: "Staging"
-          CUSTOM_FIELD_1_SHORT: "true"
-          CUSTOM_FIELD_2_TITLE: "Namespace"
-          CUSTOM_FIELD_2_VALUE: "dev"
-          CUSTOM_FIELD_2_SHORT: "true"
-          CUSTOM_FIELD_3_TITLE: "ENV"
-          CUSTOM_FIELD_3_VALUE: "Prod"
-          CUSTOM_FIELD_3_SHORT: "true"
-          CUSTOM_FIELD_4_TITLE: "Namespace-2"
-          CUSTOM_FIELD_4_VALUE: "test"
-          CUSTOM_FIELD_4_SHORT: "true"
+#       - name: Send Slack Notification
+#         uses: Kkhandale2024/slack@v.1
+#         with:
+#           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+#           SLACK_USERNAME: test-16
+#           SLACK_CHANNEL: test-up
+#           SLACK_COLOR: "#967BB6" 
+#           SLACK_ICON_URL: https://clouddrove.com/assets/images/logo.png
+#           MESSAGE: ':white_check_mark: Here is your generated :rocket:'
+#           REPO_ACTION_URL: "${{ github.server_url }}/${{ github.repository }}/actions"
+#           DEPLOYMENT_URL: 'https://your-organization.com'
+#           FOOTER: 'CloudDrove' 
+#           FOOTER_ICON: "https://avatars.githubusercontent.com/u/45422299?s=200&v=4" 
+#           ORG_URL: 'https://your-organization.com'
+#           FILE_URL: ${{ env.FILE_URL }}
+#           SLACK_ICON_EMOJI: ':rocket:'
+#           CUSTOM_FIELD_1_TITLE: "Environment"
+#           CUSTOM_FIELD_1_VALUE: "Staging"
+#           CUSTOM_FIELD_1_SHORT: "true"
+#           CUSTOM_FIELD_2_TITLE: "Namespace"
+#           CUSTOM_FIELD_2_VALUE: "dev"
+#           CUSTOM_FIELD_2_SHORT: "true"
+#           CUSTOM_FIELD_3_TITLE: "ENV"
+#           CUSTOM_FIELD_3_VALUE: "Prod"
+#           CUSTOM_FIELD_3_SHORT: "true"
+#           CUSTOM_FIELD_4_TITLE: "Namespace-2"
+#           CUSTOM_FIELD_4_VALUE: "test"
+#           CUSTOM_FIELD_4_SHORT: "true"
         
 
 

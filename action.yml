@@ -1,6 +1,6 @@
 name: 'Custom Slack Notifier'
 description: 'A GitHub Action to send customizable notifications to a Slack channel using Docker'
-author: 'Your Name or Organization'
+
 
 inputs:
   SLACK_WEBHOOK_URL:
@@ -81,7 +81,7 @@ inputs:
 
 runs:
   using: 'docker'
-  image: 'docker://ghcr.io/Kkhandale2024/slack:v.1'
+  image: 'docker://ghcr.io/kkhandale2024/slack-custom:new'
   args:
     - ${{ inputs.SLACK_WEBHOOK_URL }}
     - ${{ inputs.SLACK_USERNAME }}
