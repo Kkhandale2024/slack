@@ -50,7 +50,7 @@ jobs:
 
 
       - name: Send Slack Notification
-        uses:  Kkhandale2024/slack@main
+        uses: Kkhandale2024/slack@v.1
         with:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
           SLACK_USERNAME: test-16
