@@ -5,83 +5,59 @@ description: 'A GitHub Action to send customizable notifications to a Slack chan
 inputs:
   SLACK_WEBHOOK_URL:
     description: 'The Slack webhook URL for sending messages'
-    required: true
   SLACK_USERNAME:
     description: 'Username that will appear in the Slack message'
-    default: 
   SLACK_CHANNEL:
     description: 'The Slack channel to send the notification to'
-    default: 
   SLACK_COLOR:
     description: 'The color of the message sidebar in Slack'
-    default: 
   SLACK_ICON_URL:
     description: 'URL for the icon that will be displayed with the message'
-    default: 
   MESSAGE:
     description: 'Custom message content to display'
-    default:
   REPO_ACTION_URL:
     description: 'URL for the GitHub Actions page in the repository'
-    default: 
   DEPLOYMENT_URL:
     description: 'URL of the deployment or organization website'
-    default: 
   FOOTER:
     description: 'Footer text that appears at the bottom of the message'
-    default: 
   FOOTER_ICON:
     description: 'Icon displayed next to the footer text'
-    default: 
   ORG_URL:
     description: 'URL to your organization website'
-    default: 
   FILE_URL:
     description: 'URL of the file to include in the message'
-    default: 
   SLACK_ICON_EMOJI:
     description: 'Emoji to use as the message icon (alternative to SLACK_ICON_URL)'
-    default: 
   CUSTOM_FIELD_1_TITLE:
     description: 'Title for custom field 1'
-    default: 
   CUSTOM_FIELD_1_VALUE:
     description: 'Value for custom field 1'
-    default: 
   CUSTOM_FIELD_1_SHORT:
     description: 'Display custom field 1 in short format (true/false)'
-    default: 
   CUSTOM_FIELD_2_TITLE:
     description: 'Title for custom field 2'
-    default: 
   CUSTOM_FIELD_2_VALUE:
     description: 'Value for custom field 2'
-    default: 
   CUSTOM_FIELD_2_SHORT:
     description: 'Display custom field 2 in short format (true/false)'
-    default: 
   CUSTOM_FIELD_3_TITLE:
     description: 'Title for custom field 3'
-    default: 
   CUSTOM_FIELD_3_VALUE:
     description: 'Value for custom field 3'
-    default: 
   CUSTOM_FIELD_3_SHORT:
     description: 'Display custom field 3 in short format (true/false)'
-    default: 
   CUSTOM_FIELD_4_TITLE:
     description: 'Title for custom field 4'
-    default: 
   CUSTOM_FIELD_4_VALUE:
-    description: 'Value for custom field 4'
-    default: 
+    description: 'Value for custom field 4' 
   CUSTOM_FIELD_4_SHORT:
     description: 'Display custom field 4 in short format (true/false)'
-    default: 
+    
 
 runs:
   using: 'docker'
-  image: 'docker://ghcr.io/kkhandale2024/slack-custom:v6'
+  image: 'docker://ghcr.io/kkhandale2024/slack-custom:v7'
   args:
     - ${{ inputs.SLACK_WEBHOOK_URL }}
     - ${{ inputs.SLACK_USERNAME }}
