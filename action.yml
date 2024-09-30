@@ -1,0 +1,111 @@
+name: 'Custom Slack Notifier'
+description: 'A GitHub Action to send customizable notifications to a Slack channel using Docker'
+author: 'Your Name or Organization'
+
+inputs:
+  SLACK_WEBHOOK_URL:
+    description: 'The Slack webhook URL for sending messages'
+    required: true
+  SLACK_USERNAME:
+    description: 'Username that will appear in the Slack message'
+    default: 
+  SLACK_CHANNEL:
+    description: 'The Slack channel to send the notification to'
+    default: 
+  SLACK_COLOR:
+    description: 'The color of the message sidebar in Slack'
+    default: '#967BB6'
+  SLACK_ICON_URL:
+    description: 'URL for the icon that will be displayed with the message'
+    default: 'https://clouddrove.com/assets/images/logo.png'
+  MESSAGE:
+    description: 'Custom message content to display'
+    default: 'Here is your generated :rocket:'
+  REPO_ACTION_URL:
+    description: 'URL for the GitHub Actions page in the repository'
+    default: '${{ github.server_url }}/${{ github.repository }}/actions'
+  DEPLOYMENT_URL:
+    description: 'URL of the deployment or organization website'
+    default: 'https://your-organization.com'
+  FOOTER:
+    description: 'Footer text that appears at the bottom of the message'
+    default: 'CloudDrove'
+  FOOTER_ICON:
+    description: 'Icon displayed next to the footer text'
+    default: 'https://avatars.githubusercontent.com/u/45422299?s=200&v=4'
+  ORG_URL:
+    description: 'URL to your organization website'
+    default: 'https://your-organization.com'
+  FILE_URL:
+    description: 'URL of the file to include in the message'
+    default: 
+  SLACK_ICON_EMOJI:
+    description: 'Emoji to use as the message icon (alternative to SLACK_ICON_URL)'
+    default: ':rocket:'
+  CUSTOM_FIELD_1_TITLE:
+    description: 'Title for custom field 1'
+    default: 'Environment'
+  CUSTOM_FIELD_1_VALUE:
+    description: 'Value for custom field 1'
+    default: 'Staging'
+  CUSTOM_FIELD_1_SHORT:
+    description: 'Display custom field 1 in short format (true/false)'
+    default: 'true'
+  CUSTOM_FIELD_2_TITLE:
+    description: 'Title for custom field 2'
+    default: 'Namespace'
+  CUSTOM_FIELD_2_VALUE:
+    description: 'Value for custom field 2'
+    default: 'dev'
+  CUSTOM_FIELD_2_SHORT:
+    description: 'Display custom field 2 in short format (true/false)'
+    default: 'true'
+  CUSTOM_FIELD_3_TITLE:
+    description: 'Title for custom field 3'
+    default: 'ENV'
+  CUSTOM_FIELD_3_VALUE:
+    description: 'Value for custom field 3'
+    default: 'Prod'
+  CUSTOM_FIELD_3_SHORT:
+    description: 'Display custom field 3 in short format (true/false)'
+    default: 'true'
+  CUSTOM_FIELD_4_TITLE:
+    description: 'Title for custom field 4'
+    default: 'Namespace-2'
+  CUSTOM_FIELD_4_VALUE:
+    description: 'Value for custom field 4'
+    default: 'test'
+  CUSTOM_FIELD_4_SHORT:
+    description: 'Display custom field 4 in short format (true/false)'
+    default: 'true'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.SLACK_WEBHOOK_URL }}
+    - ${{ inputs.SLACK_USERNAME }}
+    - ${{ inputs.SLACK_CHANNEL }}
+    - ${{ inputs.SLACK_COLOR }}
+    - ${{ inputs.SLACK_ICON_URL }}
+    - ${{ inputs.MESSAGE }}
+    - ${{ inputs.REPO_ACTION_URL }}
+    - ${{ inputs.DEPLOYMENT_URL }}
+    - ${{ inputs.FOOTER }}
+    - ${{ inputs.FOOTER_ICON }}
+    - ${{ inputs.ORG_URL }}
+    - ${{ inputs.FILE_URL }}
+    - ${{ inputs.SLACK_ICON_EMOJI }}
+    - ${{ inputs.CUSTOM_FIELD_1_TITLE }}
+    - ${{ inputs.CUSTOM_FIELD_1_VALUE }}
+    - ${{ inputs.CUSTOM_FIELD_1_SHORT }}
+    - ${{ inputs.CUSTOM_FIELD_2_TITLE }}
+    - ${{ inputs.CUSTOM_FIELD_2_VALUE }}
+    - ${{ inputs.CUSTOM_FIELD_2_SHORT }}
+    - ${{ inputs.CUSTOM_FIELD_3_TITLE }}
+    - ${{ inputs.CUSTOM_FIELD_3_VALUE }}
+    - ${{ inputs.CUSTOM_FIELD_3_SHORT }}
+    - ${{ inputs.CUSTOM_FIELD_4_TITLE }}
+    - ${{ inputs.CUSTOM_FIELD_4_VALUE }}
+    - ${{ inputs.CUSTOM_FIELD_4_SHORT }}
+
