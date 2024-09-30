@@ -81,7 +81,7 @@ inputs:
 
 runs:
   using: 'docker'
-  image: 'docker://ghcr.io/kkhandale2024/slack-custom:new'
+  image: 'docker://ghcr.io/kkhandale2024/slack-custom:v2'
   args:
     - ${{ inputs.SLACK_WEBHOOK_URL }}
     - ${{ inputs.SLACK_USERNAME }}
