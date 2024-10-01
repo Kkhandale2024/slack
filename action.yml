@@ -5,8 +5,10 @@ description: 'A GitHub Action to send customizable notifications to a Slack chan
 inputs:
   SLACK_WEBHOOK_URL:
     description: 'The Slack webhook URL for sending messages'
+    required: true
   SLACK_USERNAME:
     description: 'Username that will appear in the Slack message'
+    default: 'clouddrove'
   SLACK_CHANNEL:
     description: 'The Slack channel to send the notification to'
   SLACK_COLOR:
@@ -57,7 +59,7 @@ inputs:
 
 runs:
   using: 'docker'
-  image: 'docker://ghcr.io/kkhandale2024/slack-custom:v8'
+  image: 'docker://ghcr.io/kkhandale2024/slack-custom:v9'
   args:
     - ${{ inputs.SLACK_WEBHOOK_URL }}
     - ${{ inputs.SLACK_USERNAME }}
