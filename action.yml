@@ -13,6 +13,7 @@ inputs:
     description: 'The Slack channel to send the notification to'
   SLACK_COLOR:
     description: 'The color of the message sidebar in Slack'
+    default: "#1AA260"
   SLACK_ICON_URL:
     description: 'URL for the icon that will be displayed with the message'
   MESSAGE:
