@@ -109,8 +109,8 @@ JSON_PAYLOAD+=$(cat <<EOF
           "short": true
         },
         {
-          "title": "Commit ID",
-          "value": "$COMMIT_ID",
+          "title": "Commit",
+          "value": "$COMMIT",
           "short": true
         },
 EOF
