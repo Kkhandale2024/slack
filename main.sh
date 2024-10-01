@@ -257,7 +257,14 @@ EOF
   )
 fi
 
-# Close JSON structure
 JSON_PAYLOAD+=$(cat <<EOF
     }
   ]
+}
+EOF
+)
+
+# Sending the payload to Slack
+curl -X POST -H 'Content-type: application/json' --data "$JSON_PAYLOAD" "$SLACK_WEBHOOK_URL"
+
+echo "Message sent to Slack successfully!"
