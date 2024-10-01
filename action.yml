@@ -16,6 +16,7 @@ inputs:
     default: "#1AA260"
   SLACK_ICON_URL:
     description: 'URL for the icon that will be displayed with the message'
+    default: https://clouddrove.com/assets/images/logo.png
   MESSAGE:
     description: 'Custom message content to display'
   REPO_ACTION_URL:
