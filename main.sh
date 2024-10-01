@@ -98,7 +98,7 @@ GITHUB_USERNAME="${GITHUB_ACTOR:-'unknown'}"  # Default to 'unknown' if not set
 # Start creating the JSON payload for the Slack message
 JSON_PAYLOAD=$(cat <<EOF
 {
-  "username": "$GITHUB_ACTOR",
+  "GITHUB_USERNAME": "$GITHUB_ACTOR",
 EOF
 )
 
