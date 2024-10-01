@@ -42,7 +42,6 @@ echo "DEBUG: MESSAGE is: '$MESSAGE'"
 # Example environment variables for demo purposes
 REF="${GITHUB_REF:-'N/A'}"
 EVENT="${GITHUB_EVENT_NAME:-'N/A'}"
-COMMIT_ID="${GITHUB_SHA:-'N/A'}"  # Get the commit ID (SHA)
 
 # Define a map of predefined colors for various job statuses
 declare -A COLORS
@@ -107,11 +106,6 @@ JSON_PAYLOAD+=$(cat <<EOF
         {
           "title": "Event",
           "value": "$EVENT",
-          "short": true
-        },
-        {
-          "title": "Commit ID",
-          "value": "$COMMIT_ID",
           "short": true
         },
 EOF
@@ -269,3 +263,4 @@ echo "DEBUG: JSON_PAYLOAD is: $JSON_PAYLOAD"
 curl -X POST -H "Content-Type: application/json" -d "$JSON_PAYLOAD" "$SLACK_WEBHOOK_URL"
 
 echo "Successfully sent the message to Slack!"
+
