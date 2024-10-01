@@ -51,7 +51,7 @@ GITHUB_RUN_ID="${GITHUB_RUN_ID:-'N/A'}"  # Get the run ID from environment
 REPO_ACTION_URL="${REPO_URL}/actions/runs/${GITHUB_RUN_ID}"
 
 # Get the GitHub username of the user who triggered the action
-GITHUB_ACTOR="${GITHUB_SERVER_URL}/${GITHUB_ACTOR}/${GITHUB_REPOSITORY}"
+GITHUB_ACTOR="${SLACK_MSG_AUTHOR:-"$GITHUB_ACTOR"}"
  # Default to 'unknown' if not set
 
 # Define a map of predefined colors for various job statuses
