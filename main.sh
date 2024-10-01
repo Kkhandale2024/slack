@@ -43,10 +43,9 @@ echo "DEBUG: MESSAGE is: '$MESSAGE'"
 REF="${GITHUB_REF:-'N/A'}"
 EVENT="${GITHUB_EVENT_NAME:-'N/A'}"
 COMMIT_ID="${GITHUB_SHA:-'N/A'}"  # Get the full commit ID (SHA)
-SHORT_COMMIT_ID=$(echo "$COMMIT_ID" | cut -c1-7)  # Get the first 7 characters for
+SHORT_COMMIT_ID=$(echo "$COMMIT_ID" | cut -c1-7)  # Get the first 7 characters for short commit ID
 REPO_URL="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}"  # e.g., https://github.com/user/repo
 COMMIT_URL="${REPO_URL}/commit/${COMMIT_ID}"  # e.g., https://github.com/user/repo/commit/10e97f
-
 
 # Define a map of predefined colors for various job statuses
 declare -A COLORS
@@ -97,11 +96,6 @@ JSON_PAYLOAD+=$(cat <<EOF
   "attachments": [
     {
       "color": "$SLACK_COLOR",
-EOF
-)
-
-# Continue with fields
-JSON_PAYLOAD+=$(cat <<EOF
       "fields": [
         {
           "title": "Ref",
@@ -120,7 +114,7 @@ JSON_PAYLOAD+=$(cat <<EOF
         },
         {
           "title": "Commit URL",
-          "value": "<$COMMIT_URL>",  # Link to the commit
+          "value": "<$COMMIT_URL>",
           "short": true
         },
 EOF
@@ -267,15 +261,3 @@ fi
 JSON_PAYLOAD+=$(cat <<EOF
     }
   ]
-}
-EOF
-)
-
-# Debugging: Output the entire JSON payload before sending
-echo "DEBUG: JSON_PAYLOAD is: $JSON_PAYLOAD"
-
-# Send the message to Slack
-curl -X POST -H "Content-Type: application/json" -d "$JSON_PAYLOAD" "$SLACK_WEBHOOK_URL"
-
-echo "Successfully sent the message to Slack!"
-
