@@ -42,6 +42,8 @@ echo "DEBUG: MESSAGE is: '$MESSAGE'"
 # Example environment variables for demo purposes
 REF="${GITHUB_REF:-'N/A'}"
 EVENT="${GITHUB_EVENT_NAME:-'N/A'}"
+COMMIT_ID="${GITHUB_SHA:-'N/A'}"  # Get the full commit ID (SHA)
+SHORT_COMMIT_ID=$(echo "$COMMIT_ID" | cut -c1-7)  # Get the first 7 characters for short commit ID
 
 # Define a map of predefined colors for various job statuses
 declare -A COLORS
@@ -109,8 +111,8 @@ JSON_PAYLOAD+=$(cat <<EOF
           "short": true
         },
         {
-          "title": "Commit",
-          "value": "$COMMIT",
+          "title": "Commit ID",
+          "value": "$SHORT_COMMIT_ID",
           "short": true
         },
 EOF
@@ -254,18 +256,3 @@ EOF
 fi
 
 # Close JSON structure
-JSON_PAYLOAD+=$(cat <<EOF
-    }
-  ]
-}
-EOF
-)
-
-# Debugging: Output the entire JSON payload before sending
-echo "DEBUG: JSON_PAYLOAD is: $JSON_PAYLOAD"
-
-# Send the message to Slack
-curl -X POST -H "Content-Type: application/json" -d "$JSON_PAYLOAD" "$SLACK_WEBHOOK_URL"
-
-echo "Successfully sent the message to Slack!"
-
