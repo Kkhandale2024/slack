@@ -12,7 +12,6 @@ SLACK_CHANNEL="${INPUT_SLACK_CHANNEL:-}"
 JOB_STATUS="${INPUT_JOB_STATUS:-}"
 SLACK_COLOR="${INPUT_SLACK_COLOR:-}"  # Custom color can be passed via this variable
 ORG_URL="${INPUT_ORG_URL:-}"
-REPO_ACTION_URL="${INPUT_REPO_ACTION_URL:-}"
 FOOTER="${INPUT_FOOTER:-}"  # Make FOOTER optional
 FOOTER_ICON="${INPUT_FOOTER_ICON:-}"  # Make FOOTER_ICON optional
 FILE_URL="${INPUT_FILE_URL:-}"
@@ -46,6 +45,10 @@ REPO_URL="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}"  # e.g., https://github.com
 COMMIT_ID="${GITHUB_SHA:-'N/A'}"  # Get the full commit ID (SHA)
 SHORT_COMMIT_ID=$(echo "$COMMIT_ID" | cut -c1-7)  # Get the first 7 characters for short commit ID
 SHORT_COMMIT_URL="${REPO_URL}/commit/${COMMIT_ID}"  # e.g., https://github.com/user/repo/commit/10e97f
+
+# Construct the Actions URL using environment variables
+GITHUB_RUN_ID="${GITHUB_RUN_ID:-'N/A'}"  # Get the run ID from environment
+REPO_ACTION_URL="${REPO_URL}/actions/runs/${GITHUB_RUN_ID}"
 
 # Define a map of predefined colors for various job statuses
 declare -A COLORS
@@ -109,7 +112,7 @@ JSON_PAYLOAD+=$(cat <<EOF
         },
         {
           "title": "Actions URL",
-          "value": "$REPO_ACTION_URL",
+          "value": "<$REPO_ACTION_URL|Slack Notify>",
           "short": true
         },
         {
@@ -139,19 +142,6 @@ if [[ -n "$TRIMMED_FILE_URL" ]]; then
         {
           "title": "File URL",
           "value": "<$TRIMMED_FILE_URL>",
-          "short": false
-        },
-EOF
-)
-fi
-
-# Add Repo Action URL if present
-TRIMMED_REPO_ACTION_URL=$(echo "$REPO_ACTION_URL" | xargs)
-if [[ -n "$TRIMMED_REPO_ACTION_URL" ]]; then
-  JSON_PAYLOAD+=$(cat <<EOF
-        {
-          "title": "Repo Action URL",
-          "value": "$TRIMMED_REPO_ACTION_URL",
           "short": false
         },
 EOF
