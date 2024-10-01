@@ -101,9 +101,9 @@ fi
 # Continue adding other message elements
 JSON_PAYLOAD+=$(cat <<EOF
   "channel": "$SLACK_CHANNEL",
-  "ACTOR": "$GITHUB_ACTOR",
   "attachments": [
     {
+      "ACTOR": "$GITHUB_ACTOR",
       "color": "$SLACK_COLOR",
       "fields": [
         {
