@@ -105,7 +105,7 @@ JSON_PAYLOAD+=$(cat <<EOF
       "color": "$SLACK_COLOR",
       "fields": [
         {
-          "value": "<$GITHUB_ACTOR|User>",
+          "value": "$GITHUB_ACTOR",
           "short": true
         },
         {
