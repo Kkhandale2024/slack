@@ -45,7 +45,7 @@ EVENT="${GITHUB_EVENT_NAME:-'N/A'}"
 COMMIT_ID="${GITHUB_SHA:-'N/A'}"  # Get the full commit ID (SHA)
 SHORT_COMMIT_ID=$(echo "$COMMIT_ID" | cut -c1-7)  # Get the first 7 characters for short commit ID
 REPO_URL="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}"  # e.g., https://github.com/user/repo
-COMMIT_URL="${REPO_URL}/commit/${COMMIT_ID}"  # e.g., https://github.com/user/repo/commit/10e97f
+SHORT_COMMIT_URL="${REPO_URL}/commit/${COMMIT_ID}"  # e.g., https://github.com/user/repo/commit/10e97f
 
 # Define a map of predefined colors for various job statuses
 declare -A COLORS
@@ -114,7 +114,7 @@ JSON_PAYLOAD+=$(cat <<EOF
         },
         {
           "title": "Commit URL",
-          "value": "<$COMMIT_URL>",
+          "value": "<$SHORT_COMMIT_URL>",
           "short": true
         },
 EOF
