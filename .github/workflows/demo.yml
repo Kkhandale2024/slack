@@ -53,7 +53,7 @@ jobs:
         uses: Kkhandale2024/slack@v.1
         with:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-#           SLACK_USERNAME: test-16
+          SLACK_USERNAME: test-16
 #           SLACK_CHANNEL: test-up
 #           SLACK_COLOR: "#967BB6" 
 #           SLACK_ICON_URL: https://clouddrove.com/assets/images/logo.png
