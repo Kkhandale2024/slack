@@ -18,6 +18,9 @@ FOOTER_ICON="${INPUT_FOOTER_ICON:-}"  # Make FOOTER_ICON optional
 FILE_URL="${INPUT_FILE_URL:-}"
 DEPLOYMENT_URL="${INPUT_DEPLOYMENT_URL:-}"
 
+# Bitly settings (replace with your own values)
+BITLY_ACCESS_TOKEN="YOUR_BITLY_ACCESS_TOKEN"
+
 # Custom fields
 CUSTOM_FIELD_1_TITLE="${INPUT_CUSTOM_FIELD_1_TITLE:-}"
 CUSTOM_FIELD_1_VALUE="${INPUT_CUSTOM_FIELD_1_VALUE:-}"
@@ -43,7 +46,24 @@ echo "DEBUG: MESSAGE is: '$MESSAGE'"
 REF="${GITHUB_REF:-'N/A'}"
 EVENT="${GITHUB_EVENT_NAME:-'N/A'}"
 REPO_URL="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}"  # e.g., https://github.com/user/repo
+COMMIT_ID="${GITHUB_SHA:-'N/A'}"  # Get the full commit ID (SHA)
+SHORT_COMMIT_ID=$(echo "$COMMIT_ID" | cut -c1-7)  # Get the first 7 characters for short commit ID
 SHORT_COMMIT_URL="${REPO_URL}/commit/${COMMIT_ID}"  # e.g., https://github.com/user/repo/commit/10e97f
+
+# Function to shorten URLs using Bitly
+shorten_url() {
+  local url="$1"
+  local response
+  response=$(curl -s -X POST "https://api-ssl.bitly.com/v4/shorten" \
+    -H "Authorization: Bearer $BITLY_ACCESS_TOKEN" \
+    -H "Content-Type: application/json" \
+    -d "{\"long_url\": \"$url\"}")
+
+  echo "$response" | jq -r '.link'
+}
+
+# Shorten the commit URL
+SHORT_COMMIT_URL=$(shorten_url "$SHORT_COMMIT_URL")
 
 # Define a map of predefined colors for various job statuses
 declare -A COLORS
