@@ -1,19 +1,19 @@
-# name: Slack Notify
+name: Slack Notify
 
-# on:
-#   push:
-#     branches:
-#       - main
-#   workflow_dispatch:
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
 
-# jobs:
-#   run-safe-scrub:
-#     name: Run SafeScrub Daily
-#     runs-on: ubuntu-latest
-#     permissions:
-#       contents: 'read'
-#       id-token: 'write'
-#     steps:
+jobs:
+  run-safe-scrub:
+    name: Run SafeScrub Daily
+    runs-on: ubuntu-latest
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+    steps:
 #       - name: Check out code
 #         uses: actions/checkout@v3
      
@@ -49,10 +49,10 @@
 
 
 
-#       - name: Send Slack Notification
-#         uses: Kkhandale2024/slack@v.1
-#         with:
-#           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      - name: Send Slack Notification
+        uses: Kkhandale2024/slack@v.1
+        with:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 #           SLACK_USERNAME: test-16
 #           SLACK_CHANNEL: test-up
 #           SLACK_COLOR: "#967BB6" 
