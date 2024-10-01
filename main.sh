@@ -122,7 +122,7 @@ JSON_PAYLOAD+=$(cat <<EOF
           "title": "Commit URL",
           "value": "<$COMMIT_URL>",  # Link to the commit
           "short": true
-        }
+        },
 EOF
 )
 
