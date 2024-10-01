@@ -54,9 +54,6 @@ REPO_ACTION_URL="${REPO_URL}/actions/runs/${GITHUB_RUN_ID}"
 GITHUB_ACTOR="${GITHUB_SERVER_URL}/${GITHUB_ACTOR}/${GITHUB_REPOSITORY}"
  # Default to 'unknown' if not set
 
-# Construct GitHub Actor Repo URL
-GITHUB_ACTOR_REPO_URL="${GITHUB_SERVER_URL}/${GITHUB_ACTOR}/${GITHUB_REPOSITORY}"
-
 # Define a map of predefined colors for various job statuses
 declare -A COLORS
 COLORS=(
@@ -108,13 +105,8 @@ JSON_PAYLOAD+=$(cat <<EOF
       "color": "$SLACK_COLOR",
       "fields": [
         {
-          "title": "User",
-          "value": "$GITHUB_ACTOR",
-          "short": true
-        },
-        {
-          "title": "User Repo URL",
-          "value": "<$GITHUB_ACTOR_REPO_URL|View Repo>",
+          
+          "value": "<$GITHUB_ACTOR|User>",
           "short": true
         },
         {
