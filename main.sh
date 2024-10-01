@@ -103,9 +103,10 @@ JSON_PAYLOAD+=$(cat <<EOF
   "channel": "$SLACK_CHANNEL",
   "attachments": [
     {
-      "ACTOR": "$GITHUB_ACTOR",
       "color": "$SLACK_COLOR",
       "fields": [
+         "value": "$GITHUB_ACTOR",
+         "short": true
         {
           "title": "Ref",
           "value": "$REF",
