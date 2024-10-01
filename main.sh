@@ -50,6 +50,9 @@ SHORT_COMMIT_URL="${REPO_URL}/commit/${COMMIT_ID}"  # e.g., https://github.com/u
 GITHUB_RUN_ID="${GITHUB_RUN_ID:-'N/A'}"  # Get the run ID from environment
 REPO_ACTION_URL="${REPO_URL}/actions/runs/${GITHUB_RUN_ID}"
 
+# Get the GitHub username of the user who triggered the action
+GITHUB_ACTOR="${GITHUB_ACTOR:-'unknown'}"  # Default to 'unknown' if not set
+
 # Define a map of predefined colors for various job statuses
 declare -A COLORS
 COLORS=(
@@ -93,15 +96,6 @@ EOF
 )
 fi
 
-GITHUB_USERNAME="${GITHUB_ACTOR:-'unknown'}"  # Default to 'unknown' if not set
-
-# Start creating the JSON payload for the Slack message
-JSON_PAYLOAD=$(cat <<EOF
-{
-  "GITHUB_USERNAME": "$GITHUB_ACTOR",
-EOF
-)
-
 # Continue adding other message elements
 JSON_PAYLOAD+=$(cat <<EOF
   "channel": "$SLACK_CHANNEL",
@@ -109,6 +103,11 @@ JSON_PAYLOAD+=$(cat <<EOF
     {
       "color": "$SLACK_COLOR",
       "fields": [
+        {
+          "title": "User",
+          "value": "$GITHUB_ACTOR",
+          "short": true
+        },
         {
           "title": "Ref",
           "value": "$REF",
