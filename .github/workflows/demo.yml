@@ -55,8 +55,8 @@ jobs:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
           SLACK_USERNAME: test-16
           SLACK_CHANNEL: test-up
-          SLACK_COLOR: "#967BB6" 
-          SLACK_ICON_URL: https://clouddrove.com/assets/images/logo.png
+          # SLACK_COLOR: "#967BB6" 
+          # SLACK_ICON_URL: https://clouddrove.com/assets/images/logo.png
 #           MESSAGE: ':white_check_mark: Here is your generated :rocket:'
 #           REPO_ACTION_URL: "${{ github.server_url }}/${{ github.repository }}/actions"
 #           DEPLOYMENT_URL: 'https://your-organization.com'
