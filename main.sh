@@ -112,7 +112,7 @@ JSON_PAYLOAD+=$(cat <<EOF
         },
         {
           "title": "Actions URL",
-          "value": "<$REPO_ACTION_URL|Slack Notify>",
+          "value": "<$REPO_ACTION_URL|clouddrove>",
           "short": true
         },
         {
