@@ -8,7 +8,7 @@ inputs:
     required: true
   SLACK_USERNAME:
     description: 'Username that will appear in the Slack message'
-    default: 'clouddrove'
+    default: 'cloud'
   SLACK_CHANNEL:
     description: 'The Slack channel to send the notification to'
   SLACK_COLOR:
@@ -25,7 +25,7 @@ inputs:
     description: 'URL of the deployment or organization website'
   FOOTER:
     description: 'Footer text that appears at the bottom of the message'
-    default: 'Cloud'
+    default: 'CloudDrove'
   FOOTER_ICON:
     description: 'Icon displayed next to the footer text'
     default: "https://avatars.githubusercontent.com/u/45422299?s=200&v=4" 
