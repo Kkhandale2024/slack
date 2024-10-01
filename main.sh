@@ -18,7 +18,6 @@ FOOTER_ICON="${INPUT_FOOTER_ICON:-}"  # Make FOOTER_ICON optional
 FILE_URL="${INPUT_FILE_URL:-}"
 DEPLOYMENT_URL="${INPUT_DEPLOYMENT_URL:-}"
 
-
 # Custom fields
 CUSTOM_FIELD_1_TITLE="${INPUT_CUSTOM_FIELD_1_TITLE:-}"
 CUSTOM_FIELD_1_VALUE="${INPUT_CUSTOM_FIELD_1_VALUE:-}"
@@ -71,6 +70,9 @@ fi
 # Trim SLACK_ICON_URL
 TRIMMED_SLACK_ICON_URL=$(echo "$SLACK_ICON_URL" | xargs)
 
+# Define the SLACK_MESSAGE for action run notification
+SLACK_MESSAGE="Notification from action run \`$GITHUB_RUN_NUMBER\`, which ran against commit \`${GITHUB_SHA}\` from branch \`${GITHUB_REF}\` of \`${GITHUB_REPOSITORY}\` repository."
+
 # Start creating the JSON payload for the Slack message
 JSON_PAYLOAD=$(cat <<EOF
 {
@@ -112,6 +114,11 @@ JSON_PAYLOAD+=$(cat <<EOF
           "title": "Commit URL",
           "value": "<$SHORT_COMMIT_URL>",
           "short": true
+        },
+        {
+          "title": "Action Run Notification",
+          "value": "$SLACK_MESSAGE",
+          "short": false
         },
 EOF
 )
@@ -253,6 +260,7 @@ EOF
   )
 fi
 
+# Close the 'attachments' block
 JSON_PAYLOAD+=$(cat <<EOF
     }
   ]
@@ -260,7 +268,9 @@ JSON_PAYLOAD+=$(cat <<EOF
 EOF
 )
 
-# Sending the payload to Slack
-curl -X POST -H 'Content-type: application/json' --data "$JSON_PAYLOAD" "$SLACK_WEBHOOK_URL"
+# Debugging: Echo the JSON payload to ensure it looks correct
+echo "DEBUG: Final JSON payload:"
+echo "$JSON_PAYLOAD"
 
-echo "Message sent to Slack successfully!"
+# Send the message to Slack
+echo "$JSON_PAYLOAD" | curl -X POST -H 'Content-type: application/json' --data @- "$SLACK_WEBHOOK_URL"
