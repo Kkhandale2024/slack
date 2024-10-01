@@ -56,8 +56,8 @@ jobs:
           SLACK_USERNAME: test-16
           SLACK_CHANNEL: test-up
           SLACK_COLOR:  "#1AA260"
-          # SLACK_ICON_URL: https://clouddrove.com/assets/images/logo.png
-#           MESSAGE: ':white_check_mark: Here is your generated :rocket:'
+          SLACK_ICON_URL: https://clouddrove.com/assets/images/logo.png
+          MESSAGE: ':white_check_mark: Here is your generated :rocket:'
 #           REPO_ACTION_URL: "${{ github.server_url }}/${{ github.repository }}/actions"
 #           DEPLOYMENT_URL: 'https://your-organization.com'
 #           FOOTER: 'CloudDrove' 
