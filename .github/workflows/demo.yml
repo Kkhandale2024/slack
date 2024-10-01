@@ -49,34 +49,34 @@ jobs:
 
 
 
-      - name: Send Slack Notification
-        uses: Kkhandale2024/slack@main
-        with:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-          SLACK_USERNAME: test-16
-          SLACK_CHANNEL: test-up
-          SLACK_COLOR:  "#1AA260"
-          SLACK_ICON_URL: https://clouddrove.com/assets/images/logo.png
-          MESSAGE: ':white_check_mark: Here is your generated :rocket:'
-          REPO_ACTION_URL: "${{ github.server_url }}/${{ github.repository }}/actions"
-          DEPLOYMENT_URL: 'https://your-organization.com'
-          FOOTER: 'CloudDrove' 
-          FOOTER_ICON: "https://avatars.githubusercontent.com/u/45422299?s=200&v=4" 
-          ORG_URL: 'https://your-organization.com'
-          FILE_URL: ${{ env.FILE_URL }}
-          SLACK_ICON_EMOJI: ':rocket:'
-          CUSTOM_FIELD_1_TITLE: "Environment"
-          CUSTOM_FIELD_1_VALUE: "Staging"
-          CUSTOM_FIELD_1_SHORT: "true"
-          CUSTOM_FIELD_2_TITLE: "Namespace"
-          CUSTOM_FIELD_2_VALUE: "dev"
-          CUSTOM_FIELD_2_SHORT: "true"
-          CUSTOM_FIELD_3_TITLE: "ENV"
-          CUSTOM_FIELD_3_VALUE: "Prod"
-          CUSTOM_FIELD_3_SHORT: "true"
-          CUSTOM_FIELD_4_TITLE: "Namespace-2"
-          CUSTOM_FIELD_4_VALUE: "test"
-          CUSTOM_FIELD_4_SHORT: "true"
+      # - name: Send Slack Notification
+      #   uses: Kkhandale2024/slack@main
+      #   with:
+      #     SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      #     SLACK_USERNAME: test-16
+      #     SLACK_CHANNEL: test-up
+      #     SLACK_COLOR:  "#1AA260"
+      #     SLACK_ICON_URL: https://clouddrove.com/assets/images/logo.png
+      #     MESSAGE: ':white_check_mark: Here is your generated :rocket:'
+      #     REPO_ACTION_URL: "${{ github.server_url }}/${{ github.repository }}/actions"
+      #     DEPLOYMENT_URL: 'https://your-organization.com'
+      #     FOOTER: 'CloudDrove' 
+      #     FOOTER_ICON: "https://avatars.githubusercontent.com/u/45422299?s=200&v=4" 
+      #     ORG_URL: 'https://your-organization.com'
+      #     FILE_URL: ${{ env.FILE_URL }}
+      #     SLACK_ICON_EMOJI: ':rocket:'
+      #     CUSTOM_FIELD_1_TITLE: "Environment"
+      #     CUSTOM_FIELD_1_VALUE: "Staging"
+      #     CUSTOM_FIELD_1_SHORT: "true"
+      #     CUSTOM_FIELD_2_TITLE: "Namespace"
+      #     CUSTOM_FIELD_2_VALUE: "dev"
+      #     CUSTOM_FIELD_2_SHORT: "true"
+      #     CUSTOM_FIELD_3_TITLE: "ENV"
+      #     CUSTOM_FIELD_3_VALUE: "Prod"
+      #     CUSTOM_FIELD_3_SHORT: "true"
+      #     CUSTOM_FIELD_4_TITLE: "Namespace-2"
+      #     CUSTOM_FIELD_4_VALUE: "test"
+      #     CUSTOM_FIELD_4_SHORT: "true"
         
 
 
