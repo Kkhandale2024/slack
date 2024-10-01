@@ -109,7 +109,7 @@ JSON_PAYLOAD+=$(cat <<EOF
         },
         {
           "title": "Actions URL",
-          "value": "<$REPO_ACTION_URL>",
+          "value": "<$REPO_ACTION_URL|CloudDrove>",
           "short": true
         },
         {
