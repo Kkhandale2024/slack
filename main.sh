@@ -48,10 +48,6 @@ COMMIT_ID="${GITHUB_SHA:-'N/A'}"  # Get the full commit ID (SHA)
 SHORT_COMMIT_ID=$(echo "$COMMIT_ID" | cut -c1-7)  # Get the first 7 characters for short commit ID
 SHORT_COMMIT_URL="${REPO_URL}/commit/${COMMIT_ID}"  # e.g., https://github.com/user/repo/commit/10e97f
 
-#
-# Shorten the commit URL
-SHORT_COMMIT_URL=$(shorten_url "$SHORT_COMMIT_URL")
-
 # Define a map of predefined colors for various job statuses
 declare -A COLORS
 COLORS=(
