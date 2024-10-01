@@ -100,7 +100,6 @@ fi
 
 # Continue adding other message elements
 JSON_PAYLOAD+=$(cat <<EOF
-{
   "channel": "$SLACK_CHANNEL",
   "attachments": [
     {
@@ -130,11 +129,7 @@ JSON_PAYLOAD+=$(cat <<EOF
           "title": "Commit",
           "value": "<$SHORT_COMMIT_URL|$SHORT_COMMIT_ID>",
           "short": true
-        }
-      ]
-    }
-  ]
-}
+        },
 EOF
 )
 
