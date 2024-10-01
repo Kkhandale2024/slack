@@ -70,9 +70,6 @@ fi
 # Trim SLACK_ICON_URL
 TRIMMED_SLACK_ICON_URL=$(echo "$SLACK_ICON_URL" | xargs)
 
-# Define the SLACK_MESSAGE for action run notification
-SLACK_MESSAGE="Notification from action run \`$GITHUB_RUN_NUMBER\`, which ran against commit \`${GITHUB_SHA}\` from branch \`${GITHUB_REF}\` of \`${GITHUB_REPOSITORY}\` repository."
-
 # Start creating the JSON payload for the Slack message
 JSON_PAYLOAD=$(cat <<EOF
 {
@@ -111,14 +108,14 @@ JSON_PAYLOAD+=$(cat <<EOF
           "short": true
         },
         {
-          "title": "Commit URL",
-          "value": "<$SHORT_COMMIT_URL>",
+          "title": "Actions URL",
+          "value": "<$REPO_ACTION_URL>",
           "short": true
         },
         {
-          "title": "Action Run Notification",
-          "value": "$SLACK_MESSAGE",
-          "short": false
+          "title": "Commit",
+          "value": "<$SHORT_COMMIT_URL|$SHORT_COMMIT_ID>",
+          "short": true
         },
 EOF
 )
