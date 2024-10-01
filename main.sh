@@ -92,7 +92,10 @@ EOF
 fi
 
 # Continue adding other message elements
-JSON_PAYLOAD+=$(cat <<EOF
+JSON_PAYLOAD=$(cat <<EOF
+{
+  "username": "<https://github.com/$GITHUB_USERNAME|$SLACK_USERNAME>",
+  "icon_url": "$SLACK_ICON_URL",
   "channel": "$SLACK_CHANNEL",
   "attachments": [
     {
