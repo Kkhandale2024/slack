@@ -63,13 +63,14 @@ inputs:
 
 runs:
   using: 'docker'
-  image: 'docker://ghcr.io/kkhandale2024/slack-custom:v11'
+  image: 'docker://ghcr.io/kkhandale2024/slack-custom:v10'
   args:
     - ${{ inputs.SLACK_WEBHOOK_URL }}
     - ${{ inputs.SLACK_USERNAME }}
     - ${{ inputs.SLACK_CHANNEL }}
     - ${{ inputs.SLACK_COLOR }}
-    - ${{ inputs.SLACK_ICON_URL != '' ? inputs.SLACK_ICON_URL : inputs.SLACK_ICON_EMOJI }}
+    - ${{ inputs.SLACK_ICON_URL }}
+    - ${{ inputs.SLACK_ICON_EMOJI }}
     - ${{ inputs.MESSAGE }}
     - ${{ inputs.REPO_ACTION_URL }}
     - ${{ inputs.DEPLOYMENT_URL }}
