@@ -3,21 +3,24 @@ name: Terraform Apply
 on:
   push:
     branches:
+      - main
       - feat/terraform
 
 permissions:
   contents: read
-  id-token: write  # Required for Workload Identity Federation
-  pull-requests: write
+  id-token: write          # Required for GCP authentication
+  pull-requests: write     # Required for PR plan approval comments
 
 jobs:
   terraform-apply:
     name: Apply Terraform
     runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Authenticate to Google Cloud
         id: auth
@@ -39,6 +42,3 @@ jobs:
         uses: dflook/terraform-apply@v1
         with:
           path: ./infra
-          #auto_approve: false
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
