@@ -5,19 +5,26 @@ on:
     branches:
       - feat/terraform
 
+permissions:
+  contents: read
+  id-token: write  # Required for Workload Identity Federation
+  pull-requests: write
+
 jobs:
   terraform-apply:
     name: Apply Terraform
     runs-on: ubuntu-latest
 
-    permissions:
-      contents: read
-      id-token: write
-      pull-requests: write
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+
+      - name: Authenticate to Google Cloud
+        id: auth
+        uses: google-github-actions/auth@v1
+        with:
+          workload_identity_provider: 'projects/295233741425/locations/global/workloadIdentityPools/my-pool-1/providers/my-pool-1'
+          service_account: 'demo-service@my-project-44865-424207.iam.gserviceaccount.com' 
 
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v2
@@ -26,9 +33,10 @@ jobs:
 
       - name: Terraform Init
         run: terraform init
+        working-directory: ./infra
 
       - name: Terraform Apply
         uses: dflook/terraform-apply@v1
         with:
           path: ./infra
-          auto_approve: false  # Ensures only approved plans are applied
+          auto_approve: false
